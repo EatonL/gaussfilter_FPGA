@@ -1,0 +1,41 @@
+module D_FIFO(clk,rst)
+input clk;
+input rst;
+
+D D_inst
+(.clk (clk),
+.rst (rst),
+.inb (inb),
+.inc (inc),
+.outa (outa),
+.outb (outb),
+.outc (outc),
+.outa1 (outa1),
+.outa2 (outa2),
+.outb1 (outb1),
+.outb2 (outb2),
+.outc1 (outc1),
+.outc2 (outc2),
+.full (full),
+.full_b (full_b),
+.rdreq (rdreq),
+.wrreq (wrreq),
+.rdreq_b (rdreq_b),
+.wrreq_b (wrreq_b)
+)
+FIFO_A	FIFO_A_inst (
+	.clock ( clock ),
+	.data ( data ),
+	.rdreq ( rdreq ),
+	.wrreq ( wrreq ),
+	.full ( full),
+	.q ( inb )
+	);
+FIFO_B	FIFO_B_inst (
+	.clock ( clk ),
+	.data ( outb2 ),
+	.rdreq ( rdreq_b),
+	.wrreq ( wrreq_b),
+	.full ( full_b ),
+	.q ( inc )
+	);

@@ -1,0 +1,25 @@
+module O(clk,rst,out);
+
+input clk,rst;
+input [14:0] out;
+output [14:0] tureOut;
+
+parameter right = 9'd300;
+parameter left = 9'd1;
+
+always@(posedge clk or negedge rst)
+begin
+	if(!rst)
+		cnt <= 9'b1;
+	else
+	begin
+		if (rdreq==1'd1)
+			cnt <= cnt + 1'd1;
+		else if (cnt > 9'd300)
+			cnt <= 9'd1;
+		else if ((cnt > 9'd1) && (cnt < 9'd300))
+			tureOut <= out;
+	end
+end
+
+endmodule
